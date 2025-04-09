@@ -1,0 +1,19 @@
+from ucimlrepo import fetch_ucirepo
+import pandas as pd
+
+# Fetch dataset
+congressional_voting_records = fetch_ucirepo(id=105)
+
+# Get features and targets
+X = congressional_voting_records.data.features
+y = congressional_voting_records.data.targets
+
+# Combine features (X) and target (y) into one DataFrame
+df = X.copy()
+df['Target'] = y
+
+# Save to CSV (without index) at the desired file path
+csv_path = r"C:\\Users\\junso\\Documents\\DH\\SEM 4\\Data Mining\\congressional+voting+records\\dataset.csv"
+df.to_csv(csv_path, index=False)
+
+print(f"Dataset saved to {csv_path}")
